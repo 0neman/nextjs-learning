@@ -18,4 +18,33 @@ export async function deleteSnippet(id:number) {
     redirect(`/`);
 }
 
+export async function createNewSnippet(formState:{message:string} ,formdata: FormData) {
+
+    const title = formdata.get('title');
+    const code = formdata.get('code');
+
+    if (typeof title !== 'string') {
+        return {message:'Wrong title entered'}
+    }
+    if (title.length < 3) {
+        return {message:'Title must be longer'};
+    }
+    if (typeof code !== 'string') {
+        return {message:'Wrong Code entered'}
+    }
+    if (code.length < 10) {
+        return {message:'Code must be longer'};
+    }
+
+    await db.snippet.create({
+        data: {
+            title,
+            code
+        }
+    });
+
+
+    redirect('/');
+}
+
 
