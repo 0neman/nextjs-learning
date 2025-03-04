@@ -1,7 +1,6 @@
 "use client";
 import { createNewSnippet } from "@/actions";
 import { useActionState } from "react";
-import {  } from "react-dom";
 
 
 export default function SnippetCreatePage() {
