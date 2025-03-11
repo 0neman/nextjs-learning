@@ -3,16 +3,17 @@ import { db } from '@/db';
 import { notFound } from 'next/navigation';
 import { deleteSnippet } from '@/actions';
 
+type SnippetShowPageProps = Promise<{ id: string }>;
 
-interface SnippetShowPageProps{
-    params: {
-        id:string
-    }
-}
+// interface SnippetShowPageProps{
+//     params: {
+//         id: string;
+//     }
+// }
 
-export default async function SnippetShowPage(props: SnippetShowPageProps) {
+export default async function SnippetShowPage({params} : {params:SnippetShowPageProps}) {
     
-    const getId = await props.params;
+    const getId = await params;
 
     const snippet = await db.snippet.findFirst({
         where: {
@@ -44,4 +45,14 @@ export default async function SnippetShowPage(props: SnippetShowPageProps) {
             </pre>
         </div>
     );
+}
+
+export async function generateStaticParams() {
+    const snippets = await db.snippet.findMany();
+
+    return snippets.map((snippet) => {
+        return {
+            id: snippet.id.toString(),
+        }
+    })
 }
