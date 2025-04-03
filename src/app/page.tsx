@@ -1,5 +1,6 @@
 import * as actions from "@/actions";
 import { auth } from "@/auth";
+import Profile from "@/components/profile";
 import { Button } from "@nextui-org/react";
 
 
@@ -7,7 +8,7 @@ import { Button } from "@nextui-org/react";
 
 export default async function Home() {
   const session = await auth();
-  console.log(session);
+  
   return (
     <div>
       <form action={actions.signIn}>
@@ -28,6 +29,7 @@ export default async function Home() {
       {
         session?.user ? <div>{JSON.stringify(session.user)}</div> : <div>Signed Out</div>
       }
+      <Profile></Profile>
     </div>
       
   );

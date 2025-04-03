@@ -9,7 +9,7 @@ export default function Profile() {
     const session = useSession();
 
     if (session.data?.user) {
-        return <div>from client: user is signed in</div>
+        return <div>from client: { JSON.stringify(session.data.user) }</div>
     }
 
     return <div>from client: user is not signed in </div>
