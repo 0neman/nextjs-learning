@@ -1,37 +1,37 @@
 import Link from "next/link";
 import {
-    Navbar,
-    NavbarBrand,
-    NavbarContent,
-    NavbarItem,
-    Input,
+    Navbar as Navb,
+    NavbarBrand as NavbBrand,
+    NavbarContent as NavbContent,
+    NavbarItem as NavbItem,
+    Input as HeroInput,
     // Button,
     // Avatar
-} from "@heroui/react";
+} from "@nextui-org/react";
 
 import { auth } from "@/auth";
 
 export default async function Header() {
     const session = await auth();
     return (
-        <Navbar className="shadow mb-6">
-            <NavbarBrand>
+        <Navb className="shadow mb-6">
+            <NavbBrand>
                 <Link href="/" className="font-bold">Discuss</Link>
-            </NavbarBrand>
+            </NavbBrand>
             
-            <NavbarContent justify="center">
-                <NavbarItem>
-                    <Input/>
-                </NavbarItem>
-            </NavbarContent>
+            <NavbContent justify="center">
+                <NavbItem>
+                    <HeroInput />
+                </NavbItem>
+            </NavbContent>
             
-            <NavbarContent justify="end">
-                <NavbarItem>
+            <NavbContent justify="end">
+                <NavbItem>
                     {
                         session?.user ? <div>Signed In</div> : <div>Signed Out</div>
                     }
-                </NavbarItem>
-            </NavbarContent>
-        </Navbar>
+                </NavbItem>
+            </NavbContent>
+        </Navb>
     );
 }

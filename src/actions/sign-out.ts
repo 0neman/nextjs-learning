@@ -1,8 +1,7 @@
-"use server"
+'use server';
 
-import * as auth from "@/auth";
+import * as auth from '@/auth';
 
 export async function signOut() {
-    const signOut = await auth.signOut();
-    return signOut;
+  return auth.signOut();
 }
